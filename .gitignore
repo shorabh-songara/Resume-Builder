@@ -1,0 +1,8 @@
+# Backend specific
+Backend/node_modules/
+Backend/uploads/
+
+
+# Environment files
+.env
+./vscode
