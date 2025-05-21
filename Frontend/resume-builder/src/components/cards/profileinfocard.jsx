@@ -16,8 +16,8 @@ function ProfileInfoCard(){
     return(
         user&&(
         <div className="flex items-center">
-            <img src={user.profileImageUrl} alt="Profile Image"  className="w-11 h-11 bg-gray-300 rounded-full mr-3"/>
-            <div className="">{user.name || ""}</div>
+            <img src={user.profileImageUrl || "https://via.placeholder.com/150"} alt="Profile Image"  className="w-11 h-11 bg-gray-300 rounded-full mr-3"/>
+            <div className="text-[15px] font-bold leading-3">{ user.name || "user"}</div>
             <button
             className="text-purple-500  text-sm font-semibold cursor-pointer hover:underline"
             onClick={handleLogout}>
