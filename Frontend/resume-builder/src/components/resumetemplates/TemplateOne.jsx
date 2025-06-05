@@ -40,7 +40,6 @@ function TemplateOne({resumeData , colorPalette ,containerWidth}){
         setBaseWidth(actualBaseWidth) //get the actual base width 
         setScale(containerWidth / baseWidth );
 
-
     } ,[containerWidth])
     return(
         <div

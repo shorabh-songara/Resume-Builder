@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../components/Inputs/Input";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import ValidateEmail from "../../utils/helper";
 import ProfilePhoto from "../../components/Inputs/ProfilePhotoSelecter";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
+import uploadImage from "../../utils/uploadImage";
 function SignUp({setCurrentPage}){
     const [profilePic , setProfilePic] = useState(null);
     const [fullName , setFullname] = useState("");
@@ -10,7 +14,8 @@ function SignUp({setCurrentPage}){
     const [password , setPassword] = useState("");
     const [ConfirmPassword , setConfirmPassword] = useState("");
     const [error , setError] = useState(null)
-
+    const {updateuser} = useContext(UserContext);
+    const navigate = useNavigate();
     const handleSignUp = async(e)=>{
         e.preventDefault();
         let profileImageUrl = "";
@@ -18,7 +23,7 @@ function SignUp({setCurrentPage}){
             setError("Please enter full name")
             return;
         }
-        if(!email){
+        if(!ValidateEmail(email)){
             setError("Please enter email")
             return;
         }
@@ -44,13 +49,38 @@ function SignUp({setCurrentPage}){
         //Signup api call
 
         try {
+            //upload image if present
+            console.log(profilePic)
+            if(profilePic){
+                const ImgUploadRes = await uploadImage(profilePic);
+                profileImageUrl = ImgUploadRes.imageUrl || "";
+            }
+            console.log("error")
+            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER , {
+                name:fullName,
+                email,
+                password,
+                ConfirmPassword,
+                profileImageUrl,
+            })
+            console.log(response);
+            const {token} = response.data;
+            if(token){
+                localStorage.setItem("token" , token);
+                updateuser(response.data);
+                navigate("/dashboard", {replace:true})
+            }
             
         } catch (error) {
+            if(error.response && error.response.data.message){
+                setError(error.response.data.message);
+            }else{
+                setError("something went wrong please try again later.")
+            }
             
         }
     }
 
-    const Navigate = useNavigate();
 
     return (
         <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">

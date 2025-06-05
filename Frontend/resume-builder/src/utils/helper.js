@@ -1,10 +1,11 @@
 import moment from "moment"
 import html2canvas from "html2canvas"
-const ValidateEmail = (email)=>{
+export const ValidateEmail = (email)=>{
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 return emailRegex.test(email);
 
 }
+
 // get lightest average color 
 
 export const getLightColorFromImage = (imgUrl)=>{
@@ -81,7 +82,6 @@ export function fixTailwindColors(element){
         })
     })
 }
-export default ValidateEmail;
 
 // #convert component to image
 export async function captureElementAsImage(element){

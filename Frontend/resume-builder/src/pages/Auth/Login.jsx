@@ -41,6 +41,7 @@ function Login({setCurrentPage}){
             console.log(token)
             if(token){
                 localStorage.setItem("token", token)
+                console.log(response.data)
                 updateuser(response.data);
                 navigate("/dashboard") 
             }

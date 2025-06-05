@@ -16,6 +16,5 @@ function TemplateCard({
             )}
         </div>
     )
-
 }
 export default TemplateCard;

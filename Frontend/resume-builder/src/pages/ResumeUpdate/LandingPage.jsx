@@ -13,6 +13,11 @@ function LandingPage(){
     const [currentPage , setCurrentPage] = useState("login")
 
     const HandleCTA = ()=>{
+        if(!user){
+            setOpenAuthModel(true);
+        }else{
+            navigate("/dashboard")
+        }
 
     }
 
@@ -104,7 +109,7 @@ function LandingPage(){
                 setOpenAuthModel(false)
                 setCurrentPage("login")
             }}
-            hideHeader
+            // hideHeader
             >
                 <div className="min-h-screenmin-h-screen flex items-center justify-center ">
                     {currentPage === "login" && <Login setCurrentPage = {setCurrentPage} />}

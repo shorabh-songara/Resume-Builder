@@ -487,6 +487,18 @@ function EditResume(){
     //deleter resume
     const handleDeleteResume = async ()=>{
 
+        try {
+            setIsLoading(true)
+            const response = await axiosInstance.delete(API_PATHS.RESUME.DELETE(resumeId))
+            toast.success("Resume Deleted Successfully")
+            navigate("/dashboard")
+        } catch (error) {
+            console.error("Error capturing image " , error) 
+            
+        }finally{
+            setIsLoading(false)
+        }
+
     }
 
     //download resume;

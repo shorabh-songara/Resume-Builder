@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<LandingPage/>}/>
         <Route path='/dashboard' element = {<DashBoard/>}/>
+        <Route path='/resume/:resumeId'  element = {<EditResume/>}/>
       </Routes>
     </Router>
     </div>

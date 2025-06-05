@@ -41,7 +41,7 @@ function WorkExperienceForm({workExperience,updateArrayItems,addArrayItem,remove
                             className="w-full mt-1 text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500 focus:border-purple-300"
                             rows={3}
                             value={experience.description || ""}
-                            onChange={(e)=> updateArrayItems(index , "discription", e.target.value)}/>
+                            onChange={(e)=> updateArrayItems(index , "description", e.target.value)}/>
                         </div>
                         {workExperience.length>1 && (
                             <button

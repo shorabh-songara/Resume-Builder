@@ -15,15 +15,27 @@ function ProfileInfoCard(){
 
     return(
         user&&(
-        <div className="flex items-center">
-            <img src={user.profileImageUrl || "https://via.placeholder.com/150"} alt="Profile Image"  className="w-11 h-11 bg-gray-300 rounded-full mr-3"/>
-            <div className="text-[15px] font-bold leading-3">{ user.name || "user"}</div>
-            <button
-            className="text-purple-500  text-sm font-semibold cursor-pointer hover:underline"
-            onClick={handleLogout}>
+            <div className="flex items-center gap-3">
+            {/* Profile Image */}
+            <img
+              src={user.profileImageUrl || "https://via.placeholder.com/150"}
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+    
+            {/* Name and Logout */}
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-gray-800">
+                {user.name || "User"}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="text-xs text-purple-500 font-medium hover:underline"
+              >
                 Logout
-            </button>
-        </div>
+              </button>
+            </div>
+          </div>
     
     )
 )

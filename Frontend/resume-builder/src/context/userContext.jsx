@@ -6,12 +6,23 @@ export const UserContext=  createContext();
 
 const UserProvider = ({children})=>{
 
+    const [user, setUser] = useState(() => {
+        // Load from localStorage on init
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+      });
+    
     const [loading , setLoading] = useState(true);
-    const [user , setUser]= useState(null);
-
+    useEffect(() => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          localStorage.removeItem("user");
+        }
+      }, [user]);
     useEffect(()=>{
+        
 
-        if(user) return;
         const accessToken = localStorage.getItem("token")
         if(!accessToken){
             setLoading(false)
@@ -21,7 +32,9 @@ const UserProvider = ({children})=>{
         const fetchuser = async()=>{
             try {
                 const response = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
-                setUser(response.data)
+                console.log(response.data.userProfile)
+
+                setUser(response.data.userProfile)
             } catch (error) {
                 console.log("user not authenticated", error);
                 clearuser()
@@ -34,7 +47,7 @@ const UserProvider = ({children})=>{
     },[])
 
     const updateuser = (userData)=>{
-        setUser(userData);
+        setUser(userData.user);
         localStorage.setItem("token",userData.token) // save token
         setLoading(false);
     }
