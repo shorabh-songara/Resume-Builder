@@ -137,13 +137,13 @@ async function getResumeById(req , res){
         if(resume){
             res.status(200).json({
                 message : "resume of a given user",
-                userresume : resume
+                resume
             })
         }
 
     } catch (error) {
         res.status(500).json({
-            message : "failed to create Resume",
+            message : "failed to get Resume",
             error : error.message
         })
     }

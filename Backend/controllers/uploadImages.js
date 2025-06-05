@@ -5,6 +5,14 @@ const upload = require("../middlewares/uploadmiddleware")
 
 async function uploadResumeImages(req, res){
     try {
+
+        upload.fields([{name : 'thumbnail'} , {name : 'profileImage'}])(req,res,async(err)=>{
+            if(err) {
+                return res.status(400).json({
+                    message :"File upload failed" , error : err.message
+                })
+            }
+        })
         const id = req.params.id
         const resume = await resumeModel.findById(id);
         if(!resume){
@@ -13,21 +21,22 @@ async function uploadResumeImages(req, res){
             });
         }
 
-        const unploadFolder = path.join(__dirname, '..' , 'uploads')
+        const uploadFolder = path.join(__dirname, '..' , 'uploads')
         const baseUrl = `${req.protocol}://${req.get('host')}`;
         const newThumbnail = req.files.thumbnail?.[0];
         const newProfileImage = req.files.profileImage?.[0];
 
         if(newThumbnail){
             if(resume.thumbnaillink){
-                const oldthumbnaillink = path.join(unploadFolder , path.basename(resume.thumbnaillink));
+                const oldthumbnaillink = path.join(uploadFolder , path.basename(resume.thumbnaillink));
                 if(fs.existsSync(oldthumbnaillink)) fs.unlinkSync(oldthumbnaillink)
             }
+            resume.thumbnaillink = `${baseUrl}/uploads/${newThumbnail.filename}`;
         }
 
         if(newProfileImage){
             if(resume.ProfileInfo?.profilePriviewUrl){
-                const oldProfile = path.join(uploadsFolder,path.basename(resume.ProfileInfo.profilePriviewUrl))
+                const oldProfile = path.join(uploadFolder,path.basename(resume.ProfileInfo.profilePriviewUrl))
                 if(fs.existsSync(oldProfile))fs.unlinkSync(oldProfile)
     
             }          

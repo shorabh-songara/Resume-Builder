@@ -31,7 +31,7 @@ async function registerUser(req,res){
         const hashedPassword =await bcrypt.hashSync(password , salt);
 
         const user = await userModel.create({
-            name , 
+            name ,  
             email,
             password : hashedPassword,
             profileImageUrl 
