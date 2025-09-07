@@ -1,12 +1,38 @@
-# React + Vite
+# 📄 Resume Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Resume Builder** is a full-stack web application that helps users create, customize, and download professional resumes with ease. It offers a clean, user-friendly React frontend and a lightweight Node.js & Express backend.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- Interactive Resume Creation – Fill in personal info, education, work experience, skills, and preview your resume.
+- Multiple Templates – Choose from different layout styles/themes.
+- Live Preview – See changes instantly while editing.
+- Secure Data Handling – Resume data handled via REST API.
+- Export Options – Download your resume as PDF/DOCX (if implemented).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **Frontend:** React (Vite), JavaScript
+- **Backend:** Node.js, Express.js
+- **Database:** *(if applicable – MongoDB / SQLite / JSON files)*
+- **Styling:** *(CSS Modules / Tailwind / Styled Components)*
+- **Linting:** ESLint
+- **API:** RESTful endpoints
+
+---
+
+## ⚡ Getting Started
+
+### Prerequisites
+Make sure you have installed:
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/shorabh-songara/Resume-Builder.git
+   cd Resume-Builder
